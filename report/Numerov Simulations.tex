@@ -1,0 +1,316 @@
+\documentclass[11pt]{article}
+\usepackage[english]{babel}       
+\usepackage{graphicx}                 
+\usepackage{amssymb,amsmath,amsfonts}
+\usepackage{vmargin}
+\usepackage{lmodern}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{upgreek}
+\usepackage[T1]{fontenc}
+\usepackage{picins}
+\usepackage{caption}
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{parskip}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage[nottoc]{tocbibind}
+\usepackage{hyperref}
+\listfiles
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+%--------------------- Einstellungen
+\setmarginsrb{2.4cm}{1.2cm}{2.4cm}{3.2cm}%
+				{7mm}{7mm}{7mm}{15mm}
+\setcounter{tocdepth}{3}
+\AtBeginDocument{\nonfrenchspacing\xspaceskip=0.7em}
+
+\newcommand{\cites}[1]{\textsuperscript{\cite{#1}}}
+\newcommand{\kb}{$k_\mathrm{B}$}
+\newcommand{\op}[1]{\widehat{#1}}
+\newcommand{\dx}[1]{\mathrm{d}#1}
+\newcommand{\ddx}[2]{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}
+
+%--------------------- Beginn des Dokumentes
+\begin{document}
+\pagenumbering{arabic}
+
+%--------------------- Titel
+\title{(Numerov) Simulations of various Potential Schemes}
+\author{Dominik Husmanns}
+\date{\today}   
+\newpage
+
+\maketitle
+
+\section{Speckle (Disorder) Potential}
+\begin{itemize}
+	\item \textbf{Idea:} create a speckle potential (simulating random disorder)
+	\item Check for Anderson localized wave functions
+	\item Requires generation and averaging over many speckle potentials
+	\item Requires averaging of the wave function over a certain energy interval (?) \cite{roman_wavelets_1996}
+\end{itemize}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.60\textwidth]{v3000rlense100.png}
+	\caption{Transmission spectrum for random potential of $V_0/k_{\rm b}=900$ nK.}
+	\label{fig:v900}
+\end{figure}
+
+\newpage
+\section{Gaussian Envelope Lattice}
+\begin{itemize}
+	\item \textbf{Idea:} Create a system with position-dependant band structures as described in \cite{cheiney_realization_2013}
+	\item Check for localized states in the center (for position dependant band structure sequence [Band-Gap-Band])
+\end{itemize}
+
+\newpage
+\begin{figure}
+	\centering
+		\includegraphics[width=0.60\textwidth]{v700.png}
+	\caption{Transmission spectrum for a lattice potential with Gaussian envelope.}
+	\label{fig:v700}
+\end{figure}
+
+\newpage
+\section{Scanning Gate over a Lattice}
+\begin{itemize}
+	\item \textbf{Idea:} Use a bump beam to create a local potential hill in a lattice. When the bump is in a valley, e.g. annihilating a lattice site, the conductance goes down since nearest neighbour tunneling is destroyed across this side. When the bump is on a barrier, conductance is also suppressed. However the blocking of a lattice site should be more grave than the increase of a barrier due to the tunneling behaviour (elaborate...).
+	\item First impression: Opposite of the expected, putting the bump on a barrier causes minima in the conductance. 
+\end{itemize}
+
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.60\textwidth]{conductance.png}
+	\caption{Conductance as a function of the bump position (300 nK) in a lattice ($a=1.8\ \upmu$m, $V_0=500$ nK)}
+	\label{fig:conductance}
+\end{figure}
+
+\subsection{Transmission through a rectangular barrier}
+
+Compare transmission through a barrier of height $V_0$ an width $a$ to the transmission through a barrier of height $2V_0$ and width $0.5a$. This corresponds to compare the the SGM-situation, where the scanning gate either annihilates a lattice site or doubles a barrier.
+The transmission through a rectangular barrier is given by
+\begin{equation}
+	T(E;V_0,a) = \left\{				
+	\begin{aligned}
+			& \frac{1}{1+\frac{V_0^2\sinh^2(k a)}{4E(V_0-E}}, \quad & E < V_0\\
+			& \frac{1}{1+\frac{V_0^2\sin^2(k a)}{4E(E-V_0}}, & E > V_0 \\
+			& \frac{1}{1+\frac{2ma^2V_0}{\hbar^2}}, & E = V_0\\
+	\end{aligned}
+	\right.
+\label{eq:T_rectbarrier}
+\end{equation}
+with
+\begin{equation}
+		k = \sqrt{\frac{2m|V_0-E|}{\hbar^2}}
+	\label{eq:k_vec}
+\end{equation}
+So effectively plot:
+\begin{equation}	
+  1 \overset{!}{=} \frac{T_1(E)}{T_2(E)} = \frac{T(E;V_0,a)}{T(E;2V_0,0.5a)} = \left\{				
+	\begin{aligned}
+			& \frac{1+\frac{V_0^2\sinh^2(\frac{1}{2}k_2 a)}{E(2V_0-E)}}{1+\frac{V_0^2\sinh^2(k_1 a)}{4E(V_0-E)}}, \quad & E < V_0\\
+			& \frac{1+\frac{V_0^2\sin^2(\frac{1}{2}k_2 a)}{E(E-2V_0)}}{1+\frac{V_0^2\sin^2(k_1 a)}{4E(E-V_0)}}, & E > V_0 \\
+			& \frac{1+\frac{ma^2 V_0}{\hbar^2}}{1+\frac{2ma^2V_0}{\hbar^2}}, & E = V_0\\
+	\end{aligned}
+	\right.
+\label{eq:T1T2}
+\end{equation}
+When this factor is $<1$, then $T_1<T_2$ and so annihilating a lattice site suppresses transmission more than doubling the height of a barrier (and vice versa). In the following, the transmission is plotted as a function of energy $E$ and Scanning gate position $x$ for several lattice spacings $a$ and a fixed height of the lattice ($V_0 / k_{\mathrm{B}}=500$ nK). The SG induced potential is of the form
+\begin{align}
+	V(x) = \left\{
+	\begin{aligned}
+		& V_0,\quad & x \leq \left|\frac{a}{4}\right|\\
+		& 0, \quad & x > \left|\frac{a}{4}\right|
+	\end{aligned}
+	\right.
+\label{eq:sgm_pot}
+\end{align}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/rect_v0500_sgm500a08peaks15.png}
+		\caption{$a=0.8\ \upmu$m}
+		\label{fig:sgm08}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/rect_v0500_sgm500a10peaks15.png}
+		\caption{$a=1\ \upmu$m}
+		\label{fig:sgm10}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/rect_v0500_sgm500a20peaks15.png}
+		\caption{$a=2\ \upmu$m}
+		\label{fig:sgm20}
+	\end{subfigure}
+\label{fig:sgm_col1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/rect_v0500_sgm500E300peaks15.png}
+		\caption{$N=15$, $E=k_{\mathrm{B}}\cdot 300$ nK}
+		\label{fig:sgm_n15_300}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/rect_v0500_sgm500E500peaks15.png}
+		\caption{$N=15$, $E=k_{\mathrm{B}}\cdot 500$ nK}
+		\label{fig:sgm_n15_500}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/rect_v0500_sgm500E700peaks15.png}
+		\caption{$N=15$, $E=k_{\mathrm{B}}\cdot 700$ nK}
+		\label{fig:sgm_n15_700}
+	\end{subfigure}
+\label{fig:sgm_col2}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/rect_v0500_sgm500E300peaks20.png}
+		\caption{$N=20$, $E=k_{\mathrm{B}}\cdot 300$ nK}
+		\label{fig:sgm_n20_300}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/rect_v0500_sgm500E500peaks20.png}
+		\caption{$N=20$, $E=k_{\mathrm{B}}\cdot 500$ nK}
+		\label{fig:sgm_n20_500}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/rect_v0500_sgm500E700peaks20.png}
+		\caption{$N=20$, $E=k_{\mathrm{B}}\cdot 700$ nK}
+		\label{fig:sgm_n20_700}
+	\end{subfigure}
+\label{fig:sgm_col3}
+\end{figure}
+
+
+\newpage
+\section{Wire states in the presence of the dimple}
+
+\begin{itemize}
+	\item \textbf{Idea:} find the number $N$ of states below the Fermi energy as a function of position $y$ in the wire
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dim_1000_wDimple_10um.png}
+		\caption{}
+		\label{fig:v1k_w10um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dim_1000_wDimple_20um.png}
+		\caption{}
+		\label{fig:v1k_w20um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dim_1000_wDimple_30um.png}
+		\caption{}
+		\label{fig:v1k_w30um}
+	\end{subfigure} \\
+	
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dim_1500_wDimple_10um.png}
+		\caption{}
+		\label{fig:v15k_w10um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dim_1500_wDimple_20um.png}
+		\caption{}
+		\label{fig:v15k_w20um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dim_1500_wDimple_30um.png}
+		\caption{}
+		\label{fig:v15k_w30um}
+	\end{subfigure} \\
+	
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dim_2000_wDimple_10um.png}
+		\caption{}
+		\label{fig:v2k_w10um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dim_2000_wDimple_20um.png}
+		\caption{}
+		\label{fig:v2k_w20um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dim_2000_wDimple_30um.png}
+		\caption{}
+		\label{fig:v2k_w30um}
+	\end{subfigure}
+	\caption{Number of transverse modes below $\upmu$ for dimple waists of $w=10, 20, 30\ \upmu$. \ref{fig:v1k_w10um}-\ref{fig:v1k_w30um} Dimple depth 1 $\upmu$K. \ref{fig:v15k_w10um}-\ref{fig:v15k_w30um} Dimple depth 1.5 $\upmu$K. \ref{fig:v2k_w10um}-\ref{fig:v2k_w30um} Dimple depth 2 $\upmu$K}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dimple_0_wDimple_25um}
+		\caption{}
+		\label{fig:v0_w25um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dimple_500_wDimple_25um}
+		\caption{}
+		\label{fig:v500_w25um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dimple_1000_wDimple_25um}
+		\caption{}
+		\label{fig:v1000_w25um}
+	\end{subfigure}\\
+	
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dimple_1500_wDimple_25um}
+		\caption{}
+		\label{fig:v1500_w25um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dimple_2000_wDimple_25um}
+		\caption{}
+		\label{fig:v2000_w25um}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=\textwidth]{grafics/V0dimple_2500_wDimple_25um}
+		\caption{}
+		\label{fig:v2500_w25um}
+	\end{subfigure}
+	\caption{Number of transverse modes below $\upmu$ for several dimple depths and a dimple waist of $w=25\ \upmu$m. \ref{fig:v0_w25um} 0 $\upmu$K. \ref{fig:v500_w25um} 500 $\upmu$K. (...)  \ref{fig:v2500_w25um} 2500 $\upmu$K.}
+\end{figure}
+
+
+\section{Triple QPC}
+\begin{itemize}
+	\item Three parallel QPCs for improved Signal-to-Noise ratio in Quantized Conductance measurement.
+	\item \textbf{Concern:} inhomogeneous illumination on the three channels (due to Gaussian BP) leads to different wire frequencies $\Rightarrow$ blurs steps
+\end{itemize}
+\begin{figure}[b]
+	\centering
+		\includegraphics[width=0.20\textwidth]{QPCx3.png}
+	\label{fig:QPCx3}
+\end{figure}
+
+\begin{figure}[b]
+	\centering
+		\includegraphics[width=0.80\textwidth]{T_col.png}
+	\label{fig:G_QPCx3}
+\end{figure}
+
+\vfill
+\newpage
+\bibliographystyle{nature}
+\bibliography{bib}
+
+\end{document}
