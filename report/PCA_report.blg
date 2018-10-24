@@ -1,0 +1,15 @@
+[1] Config.pm:302> INFO - This is Biber 2.11
+[3] Config.pm:305> INFO - Logfile is 'PCA_report.blg'
+[151] biber-MSWIN32:313> INFO - === 
+[278] Biber.pm:371> INFO - Reading 'PCA_report.bcf'
+[737] Biber.pm:857> INFO - Found 2 citekeys in bib section 0
+[803] Biber.pm:3976> INFO - Processing section 0
+[867] Biber.pm:4136> INFO - Looking for bibtex format file 'PCA_report.bib' for section 0
+[878] bibtex.pm:1500> INFO - LaTeX decoding ...
+[925] bibtex.pm:1316> INFO - Found BibTeX data source 'PCA_report.bib'
+[1114] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1115] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1115] Biber.pm:3804> INFO - Sorting list 'anyt/global//global/global' of type 'entry' with template 'anyt' and locale 'en-US'
+[1116] Biber.pm:3810> INFO - No sort tailoring available for locale 'en-US'
+[1148] bbl.pm:617> INFO - Writing 'PCA_report.bbl' with encoding 'UTF-8'
+[1154] bbl.pm:720> INFO - Output to PCA_report.bbl

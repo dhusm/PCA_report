@@ -1,0 +1,130 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global}
+    \entry{guajardo_higher-nodal_2013}{article}{}
+      \name{author}{4}{}{%
+        {{hash=3ef687123428797cc05417c6d6890ed1}{%
+           family={Guajardo},
+           familyi={G\bibinitperiod},
+           given={Edmundo\bibnamedelimb R.\bibnamedelimi Sánchez},
+           giveni={E\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=7e438143db442b280ac5ba3be068b528}{%
+           family={Tey},
+           familyi={T\bibinitperiod},
+           given={Meng\bibnamedelima Khoon},
+           giveni={M\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=d596b9747349853abbc1daf4399948b7}{%
+           family={Sidorenkov},
+           familyi={S\bibinitperiod},
+           given={Leonid\bibnamedelima A.},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=fe2959547cb357a53a7a05b33161fd76}{%
+           family={Grimm},
+           familyi={G\bibinitperiod},
+           given={Rudolf},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{65d338c07a66ca1fdd218e255204d92a}
+      \strng{fullhash}{0e3bb4c68d077849de2c42faa235403c}
+      \strng{bibnamehash}{0e3bb4c68d077849de2c42faa235403c}
+      \strng{authorbibnamehash}{0e3bb4c68d077849de2c42faa235403c}
+      \strng{authornamehash}{65d338c07a66ca1fdd218e255204d92a}
+      \strng{authorfullhash}{0e3bb4c68d077849de2c42faa235403c}
+      \field{labelalpha}{Gua13}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We report on experimental investigations of longitudinal collective oscillations in a highly elongated, harmonically trapped two-component Fermi gas with resonantly tuned s-wave interactions (“unitary Fermi gas”). We focus on higher-nodal axial modes, which in contrast to the elementary modes have received little attention so far. We show how these modes can be efficiently excited using a resonant local excitation scheme and sensitively analyzed by a Fourier transformation of the detected time evolution of the axial density profile. We study the temperature dependence of the mode frequencies across the superfluid phase transition. The behavior is qualitatively different from the elementary modes, where the mode frequencies are independent of the temperature as long as the gas stays in the hydrodynamic regime. Our results are compared to theoretical predictions based on Landau's two-fluid theory and available experimental knowledge of the equation of state. The comparison shows excellent agreement and thus both represents a sensitive test for the validity of the theoretical approach and provides an independent test of the equation of state. The present results obtained on modes of first-sound character represent benchmarks for the observation of second-sound propagation and corresponding oscillation modes.}
+      \field{journaltitle}{Physical Review A}
+      \field{month}{6}
+      \field{number}{6}
+      \field{title}{Higher-nodal collective modes in a resonantly interacting {Fermi} gas}
+      \field{urlday}{9}
+      \field{urlmonth}{4}
+      \field{urlyear}{2015}
+      \field{volume}{87}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \field{pages}{063601}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevA.87.063601
+      \endverb
+      \verb{file}
+      \verb APS Snapshot:C\:\\Users\\d_hus\\Zotero\\storage\\FZB34DZK\\PhysRevA.87.html:text/html;Full Text PDF:C\:\\Users\\d_hus\\Zotero\\storage\\744NG29Z\\Guajardo et al. - 2013 - Higher-nodal collective modes in a resonantly inte.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.aps.org/doi/10.1103/PhysRevA.87.063601
+      \endverb
+      \verb{url}
+      \verb http://link.aps.org/doi/10.1103/PhysRevA.87.063601
+      \endverb
+    \endentry
+    \entry{jolliffe_principal_2002}{book}{}
+      \name{author}{1}{}{%
+        {{hash=9918572fb57a292ea8cc2dceca53991c}{%
+           family={Jolliffe},
+           familyi={J\bibinitperiod},
+           given={I.\bibnamedelimi T.},
+           giveni={I\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \list{location}{1}{%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{9918572fb57a292ea8cc2dceca53991c}
+      \strng{fullhash}{9918572fb57a292ea8cc2dceca53991c}
+      \strng{bibnamehash}{9918572fb57a292ea8cc2dceca53991c}
+      \strng{authorbibnamehash}{9918572fb57a292ea8cc2dceca53991c}
+      \strng{authornamehash}{9918572fb57a292ea8cc2dceca53991c}
+      \strng{authorfullhash}{9918572fb57a292ea8cc2dceca53991c}
+      \field{labelalpha}{Jol02}
+      \field{sortinit}{J}
+      \field{sortinithash}{fce5f8d0bd05e8d93f3dbe21c78897ca}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Principal component analysis is central to the study of multivariate data. Although one of the earliest multivariate techniques, it continues to be the subject of much research, ranging from new model-based approaches to algorithmic ideas from neural networks. It is extremely versatile, with applications in many disciplines. The first edition of this book was the first comprehensive text written solely on principal component analysis. The second edition updates and substantially expands the original version, and is once again the definitive text on the subject. It includes core material, current research and a wide range of applications. Its length is nearly double that of the first edition. Researchers in statistics, or in other fields that use principal component analysis, will find that the book gives an authoritative yet accessible account of the subject. It is also a valuable resource for graduate courses in multivariate analysis. The book requires some knowledge of matrix algebra. Ian Jolliffe is Professor of Statistics at the University of Aberdeen. He is author or co-author of over 60 research papers and three other books. His research interests are broad, but aspects of principal component analysis have fascinated him and kept him busy for over 30 years.}
+      \field{edition}{2}
+      \field{isbn}{978-0-387-95442-4}
+      \field{series}{Springer {Series} in {Statistics}}
+      \field{title}{Principal {Component} {Analysis}}
+      \field{urlday}{12}
+      \field{urlmonth}{10}
+      \field{urlyear}{2018}
+      \field{year}{2002}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb //www.springer.com/de/book/9780387954424
+      \endverb
+      \verb{url}
+      \verb //www.springer.com/de/book/9780387954424
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

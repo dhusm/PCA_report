@@ -1,0 +1,145 @@
+\documentclass[
+oneside,titlepage,numbers=noenddot,headinclude,%1headlines,
+footinclude=true,cleardoublepage=empty,
+BCOR=5mm,paper=a4,fontsize=11pt, % Binding correction, paper type and font size
+american % Languages, change this to your language(s)
+]{scrartcl} 
+\usepackage[american]{babel}      
+\usepackage{graphicx}                 
+\usepackage{amssymb,amsmath,amsfonts}
+\usepackage{vmargin}
+\usepackage{lmodern}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{siunitx}
+\usepackage{multirow}
+%\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage[capbesideposition={inside,center},facing=yes,capbesidesep=quad]{floatrow}
+%\usepackage{sidecap}
+\usepackage[backend=biber, bibencoding=utf8,style=alphabetic, maxalphanames=1, minalphanames=1, maxnames=99, doi=false, isbn=false, url=false, backref=true]{biblatex}
+\setkomafont{captionlabel}{%
+	\textsc}%
+\setcapindent{0em}
+
+\addbibresource{PCA_report.bib}
+\include{bibliography-settings}
+\listfiles
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+
+%\newcommand{\cites}[1]{\textsuperscript{\cite{#1}}}
+%\newcommand{\kb}{$k_\mathrm{B}$}
+\newcommand{\kb}{\ensuremath{k_\mathrm{B}}}
+\newcommand{\op}[1]{\widehat{#1}}
+\newcommand{\dx}[1]{\mathrm{d}#1}
+\newcommand{\ddx}[2]{\frac{\mathrm{d}^2#1}{\mathrm{d}#2^2}}
+
+%--------------------- Beginn des Dokumentes
+\begin{document}
+\pagenumbering{arabic}
+
+%--------------------- Titel
+\title{Principal component analysis applied to time-of-flight pictures of an ultracold Fermi gas}
+\author{Dominik Husmann}
+\date{\today}   
+\newpage
+
+\maketitle
+
+\section{Introduction}
+Consider a set of random variables \( \bm{x} =(x_1,x_2,...,x_n)\). For us, \( x_i \) would be any 2D (or 1D) density distribution.
+
+Idea of principal-component analysis: Find a basis of vectors \( \bm{\alpha}_i \), $i\in\{1,...,n\}$ such that \( x_j =\sum \alpha_{_1i} s_i\,\ \forall j=0,...,n \). This basis has to maximize the variance, so maximizing
+\begin{equation}
+	\mathrm{var}(\bm{\alpha}_1\bm{x}) = \bm{\alpha}_1^T\Sigma\bm{\alpha}_1 ,
+\end{equation} 
+where \( \Sigma_{ij}=\mathrm{cov}(x_i,x_j) \) is the covariance matrix of \( \bm{x} \). The principal component \( z_1 \) is then given by 
+\[ z_1 = \bm{\alpha}^T_1\bm{x}.
+\]
+Higher order PCs are found by looking for the next vector $\bm{\alpha_{i}},\ 1<i$ --- uncorrelated to $\bm{\alpha_j},\ j<i$ --- that again maximizes the variance \( \mathrm{var}(\bm{\alpha_i}\bm{x}) \).
+One can show that the $\bm{\alpha_i}$ are the eigenvectors of $\Sigma$ \cite{jolliffe_principal_2002}, and the variance $\mathrm{var}(\bm{\alpha_{i}}\bm{x})$ is the corresponding eigenvalue $\lambda_i$. So by solving the eigensystem
+\begin{equation}
+	\Sigma \bm{v}= \lambda \bm{v}
+\end{equation}
+one obtains the principal component analysis.
+
+\paragraph{Implementation}
+Consider a discrete 1D density distribution $\bm{n} = (n_{y_0},n_{y_1},...,n_{y_n})$ as an array of $n$ random variables corresponding to the $n$ pixels of our region of interest (ROI). Now we realize $k$ different versions of this density distributions (e.g. taking several images for statistical averaging, or a data set with different atom numbers / temperatures), labeled as $\bm{n_k}$. Now we want to construct the covariance matrix of this data. To that end we subtract the mean value of each random variable:
+\begin{align}
+	\bm{\bar{n}} &= \frac{1}{n}\sum_{i=0}^{n}\bm{n_i},\\
+	\bm{\tilde{n}_i} &= \bm{n_i} - \bm{\bar{n}}.
+\end{align}
+Then we define the matrix $\bm{B}$ ($k\times n$) whose columns are the $\bm{\tilde{n}_i}$:
+\begin{equation}
+\bm{B}= \begin{pmatrix}
+	\bm{\tilde{n}_0}^\mathrm{T}\qquad \bm{\tilde{n}_1}^\mathrm{T} \qquad  \cdots  \qquad\bm{\tilde{n}_k}^\mathrm{T}\\
+\end{pmatrix}
+\end{equation}
+Thus each row represents $k$ realization of one random variable. The covariance matrix is then readily obtained using for example \textbf{np.cov(B)}. The eigenvalues $\lambda_i$ and eigenvectors $\bm{\alpha_i}$ can then be found using \textbf{np.linalg.eigh(np.cov(B))}.
+
+Generally the idea is that few PCs are responsible for most of the variation in a data set. Assuming the first $m$ PCs explain most of the variation, one can then project the original data $\bm{\tilde{n}_i}$ on the subspace spanned by this subset of basis vectors.
+\begin{equation}
+	\bm{\tilde{n}_i^m}\coloneqq \sum_{i=0}^{m}(\bm{\tilde{n}_i}\cdot\bm{\alpha_i})\bm{\alpha_i} \approx \bm{\tilde{n}_i} .
+	\label{eq:reconstruct}
+\end{equation}
+
+
+\section{Application: 1D atom density}
+We look at a density profile along the experimental \( y- \)direction, where \( x- \) and \( z- \)directions are integrated out by line summing (\( x \)) and imaging (\( z \)). That way we obtain 1D-density profiles as exemplary shown in Fig.~\ref{fig:1D_density_nonoise}, with the axis indicating position along $y$ in \SI{}{\micro\meter}. The ones shown in Fig.~\ref{fig:1D_density_nonoise} are artificial profiles created from the equation in \cite{guajardo_higher-nodal_2013}
+\begin{equation}
+	n(y) = \frac{2\pi}{m_{\mathrm{Li}}\omega_r^2}\frac{\kb T}{\lambda_T^3} f_p \left( q_0 - \frac{1}{2\kb T}m_{\mathrm{Li}}\omega_y^2 y^2\right)
+\label{eq:n}
+\end{equation}
+where $m_\mathrm{Li}$ is the mass of Lithium~6, $\omega_r$ the geometric mean of the transverse trapping frequencies $\omega_x$ and $\omega_z$, $\lambda_T$ the thermal de-Broglie wavelength, $q_0$ the reduced chemical potential $\mu/\kb T$ in the trap center, and $\omega_y$ the longitudinal trap frequency. Here we varied the temperature $T$ while keeping the atom number $N=100'000$ fixed (so the chemical potential changes accordingly, as described by the EoS).
+
+\begin{figure}
+	\fcapside{\caption{1D density profiles along longitudinal $y-$direction (see Eq.~\eqref{eq:n}) for a cloud of 100'000 atoms at various temperatures $T$ ranging from 50~nK to 500~nK. The upper part shows an exemplary curve for $T=\SI{200}{nK}$. The lower part shows the broadening in the wings with increased temperatures.}
+		\label{fig:1D_density_nonoise}}
+	{\includegraphics{{../constructClouds/N_100k_SNR_0.0_1D_density}.png}}
+\end{figure}
+
+Performing a PCA on the data shown in Fig.~\ref{fig:1D_density_nonoise} we find the eigenvalues shown in Fig.~\ref{fig:EVal_nonoise} and the according eigenvectors shown in Fig.~\ref{fig:EV_nonoise}. As can be seen the main structures of the profiles is given by the first few components. 
+
+We can now reduce the dimensionality and reconstruct the density profiles from the $m$ largest principal components (see Eq.~\eqref{eq:reconstruct}). Ultimately we want to know how the value of the second moment 
+\begin{equation}
+	\left<y^2\right> = \int^\infty_{-\infty}\text{d}y\ n(y) y^2
+\end{equation}
+changes when using an increasing number of PCs. When all principal components are included in the reconstruction, the picture should be the original, and so should be the value of the second moment (can be used as a consistency check). We define the second moment obtained form density profile reconstruction $\bm{n^m} = \bm{\tilde{n}^m} + \bm{\bar{n}}$ using the $m$ larges PCs as $\left< y_m^2 \right>$ (here we have suppressed the index $i$ for better readability). The deviation of this second moment value (in percent) from the original value is plotted in Fig.~\ref{fig:n100ksnr0}:
+\begin{equation}
+	\mathrm{plotted\ deviation}\ (\%) = \left(\frac{\left< y_m^2 \right>}{\left< y^2 \right>} - 1\right)\cdot100
+	\label{eq:dev}
+\end{equation}
+The fast convergence confirms that only few PCs are required to fully describe the data and specifically the second moment.
+
+
+\begin{figure}
+	\begin{floatrow}
+		\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/N_100k_SNR_0.0_PC_eigenvalues}.pdf}}
+	{\caption{Eigenvalues of the covariance matrix, sorted in descending order.}
+		\label{fig:EVal_nonoise}}
+	\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/N_100k_SNR_0.0_Eigenvectors}.png}}
+	{\caption{Eigenvectors of the covariance matrix. The lower part shows a zoom into the first 10 EVs.}
+		\label{fig:EV_nonoise}}
+	\end{floatrow}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics{../constructClouds/{N_100k_SNR_0.0_deviation}.pdf}
+	\caption{Deviation of the second moments obtained form density profiles reconstructed from a various number of principal components (see also Eq.~~\eqref{eq:dev}).}
+	\label{fig:n100ksnr0}
+\end{figure}
+
+\paragraph{Density profiles with noisy data}
+
+
+\vfill
+\newpage
+\printbibliography
+
+\end{document}
