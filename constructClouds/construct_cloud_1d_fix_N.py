@@ -80,7 +80,7 @@ wxyz = np.array([wx,wy,wz])
 U0 = -nuFort.potential(dipolepotentials.Li6)
 sigma0 = 0.5*3*0.67e-6**2/2/pi
 
-SNR = 0.01
+SNR = 0.05
 
 df = pd.DataFrame(columns=['Temp','sm','mu','nOD','Ntot','EE0','EF','ttf'])
 
