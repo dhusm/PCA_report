@@ -98,9 +98,24 @@ We look at a density profile along the experimental \( y- \)direction, where \( 
 where $m_\mathrm{Li}$ is the mass of Lithium~6, $\omega_r$ the geometric mean of the transverse trapping frequencies $\omega_x$ and $\omega_z$, $\lambda_T$ the thermal de-Broglie wavelength, $q_0$ the reduced chemical potential $\mu/\kb T$ in the trap center, and $\omega_y$ the longitudinal trap frequency. Here we varied the temperature $T$ while keeping the atom number $N=100'000$ fixed (so the chemical potential changes accordingly, as described by the EoS).
 
 \begin{figure}
-	\fcapside{\caption{1D density profiles along longitudinal $y-$direction (see Eq.~\eqref{eq:n}) for a cloud of 100'000 atoms at various temperatures $T$ ranging from 50~nK to 500~nK. The upper part shows an exemplary curve for $T=\SI{200}{nK}$. The lower part shows the broadening in the wings with increased temperatures.}
-		\label{fig:1D_density_nonoise}}
-	{\includegraphics{{../constructClouds/N_100k_SNR_0.0_1D_density}.png}}
+	\begin{floatrow}
+		\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/N_100k_SNR_0.0_1D_density}.png}}
+		{\caption{1D density profiles along longitudinal $y-$direction (see Eq.~\eqref{eq:n}) for a cloud of 100'000 atoms at various temperatures $T$. The upper part shows few exemplary curve indicated as red lines in the lower plot.}
+			\label{fig:1D_density_nonoise}}
+		\ffigbox[\FBwidth]{\includegraphics{../constructClouds/{N_100k_SNR_0.0_deviation}.pdf}}
+		{\caption{Deviation of the second moments obtained form density profiles reconstructed from a various number of principal components (see also Eq.~~\eqref{eq:dev}).}
+			\label{fig:n100ksnr0}}
+	\end{floatrow}
+\end{figure}
+\begin{figure}
+	\begin{floatrow}
+		\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/N_100k_SNR_0.0_PC_eigenvalues}.pdf}}
+		{\caption{Eigenvalues of the covariance matrix, sorted in descending order.}
+			\label{fig:EVal_nonoise}}
+		\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/N_100k_SNR_0.0_Eigenvectors}.png}}
+		{\caption{Eigenvectors of the covariance matrix. The lower part shows a zoom into the first 10 EVs.}
+			\label{fig:EV_nonoise}}
+	\end{floatrow}
 \end{figure}
 
 Performing a PCA on the data shown in Fig.~\ref{fig:1D_density_nonoise} we find the eigenvalues shown in Fig.~\ref{fig:EVal_nonoise} and the according eigenvectors shown in Fig.~\ref{fig:EV_nonoise}. As can be seen the main structures of the profiles is given by the first few components. 
@@ -117,25 +132,46 @@ changes when using an increasing number of PCs. When all principal components ar
 The fast convergence confirms that only few PCs are required to fully describe the data and specifically the second moment.
 
 
+\paragraph{Constant temperature}
+We repeat the analysis while fixing the temperature to \( T=\SI{100}{\nano\kelvin} \) and varying the particle number. The density profiles are shown in Fig.~\ref{fig:1D_density_nonoise_constT}. The results of the analysis are shown in Fig.~\ref{fig:n100ksnr0_constT}, \ref{fig:EVal_nonoise_constT} and \ref{fig:EV_nonoise_constT}.
+
+%\begin{figure}
+%	\fcapside{\caption{1D density profiles along longitudinal $y-$direction (see Eq.~\eqref{eq:n}) for a cloud of temperature $T=\SI{100}{\nano\kelvin}$ and atom numbers varying from \( 10^4-2\cdot10^5 \) atoms. The upper part shows an exemplary curve for $T=\SI{200}{nK}$. The upper part shows few exemplary curve indicated as red lines in the lower plot.}
+%		\label{fig:1D_density_nonoise_constT}}
+%	{\includegraphics{{../constructClouds/T_100k_SNR_0.0_1D_density}.png}}
+%\end{figure}
+
 \begin{figure}
 	\begin{floatrow}
-		\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/N_100k_SNR_0.0_PC_eigenvalues}.pdf}}
-	{\caption{Eigenvalues of the covariance matrix, sorted in descending order.}
-		\label{fig:EVal_nonoise}}
-	\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/N_100k_SNR_0.0_Eigenvectors}.png}}
-	{\caption{Eigenvectors of the covariance matrix. The lower part shows a zoom into the first 10 EVs.}
-		\label{fig:EV_nonoise}}
+		\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/T_100k_SNR_0.0_1D_density}.png}}
+		{\caption{1D density profiles along longitudinal $y-$direction (see Eq.~\eqref{eq:n}) for a cloud of temperature $T=\SI{100}{\nano\kelvin}$ and atom numbers varying from \( 10^4-2\cdot10^5 \) atoms. The upper part shows an exemplary curve for $T=\SI{200}{nK}$. The upper part shows few exemplary curve indicated as red lines in the lower plot.}
+			\label{fig:1D_density_nonoise_constT}}
+		\ffigbox[\FBwidth]{\includegraphics{../constructClouds/{N_100k_SNR_0.0_deviation}.pdf}}
+		{\caption{Deviation of the second moments obtained form density profiles reconstructed from a various number of principal components (see also Eq.~~\eqref{eq:dev}) at fixed temperature $T=\SI{100}{nK}$.}
+			\label{fig:n100ksnr0_constT}}
+	\end{floatrow}
+\end{figure}
+\begin{figure}
+	\begin{floatrow}
+		\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/T_100k_SNR_0.0_PC_eigenvalues}.pdf}}
+		{\caption{Eigenvalues of the covariance matrix, sorted in descending order.}
+			\label{fig:EVal_nonoise_constT}}
+		\ffigbox[\FBwidth]{\includegraphics{{../constructClouds/T_100k_SNR_0.0_Eigenvectors}.png}}
+		{\caption{Eigenvectors of the covariance matrix. The lower part shows a zoom into the first 10 EVs.}
+			\label{fig:EV_nonoise_constT}}
 	\end{floatrow}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics{../constructClouds/{N_100k_SNR_0.0_deviation}.pdf}
-	\caption{Deviation of the second moments obtained form density profiles reconstructed from a various number of principal components (see also Eq.~~\eqref{eq:dev}).}
-	\label{fig:n100ksnr0}
-\end{figure}
 
+\newpage
 \paragraph{Density profiles with noisy data}
+Now we want to get to a situation closer to what is encountered in the experiment, namely we add random noise to our density pictures. Here the noise amplitude $s_0$ is quantified as fraction of the maximal signal from the density profile (the central peak). We accordingly modify the density profiles by adding this noise:
+\begin{equation}
+	\bm{n} \rightarrow \bm{n} + \bm{\delta n}
+\end{equation}
+where $\bm{\delta n}= s_0 \bm{s}$ and $\bm{s}$ is a vector of random numbers between -0.5 and 0.5, and $s_0$ indicates the magnitude of the error.
+
+A simple repetition of PC analysis gives sobering results. 
 
 
 \vfill

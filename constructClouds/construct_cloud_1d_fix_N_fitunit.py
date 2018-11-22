@@ -20,7 +20,6 @@ cwd = os.getcwd()
 home = os.path.expanduser("~")
 style.use('C:\\Users\\d_hus\\.matplotlib\\stylelib\\fountain.mplstyle')
 
-
 px = 6.45e-6 / 1.56
 height = 200
 y_sample = np.arange(0,height/2*px,px)
@@ -76,25 +75,51 @@ wxyz = np.array([wx,wy,wz])
 U0 = -nuFort.potential(dipolepotentials.Li6)
 sigma0 = 0.5*3*0.67e-6**2/2/pi
 
-SNR = 0.
+SNR = 0.2
 
-df = pd.DataFrame(columns=['Temp','sm','sm0','mu','nOD','Ntot','EE0','EF','ttf'])
+df = pd.DataFrame(columns=['Temp','sm','sm0','sm_fit_unit','sm_fit_ni','mu','nOD','nOD_fit','Ntot','EE0','EF','ttf'])
 
-kT_list = np.arange(50,500,10)*1e-9*kb
+x = np.arange(50,500,10)
+kT_list = x*1e-9*kb
 my_Ntot = 1e5
-tag = 'N_'+str(int(my_Ntot*1e-3)) + 'k_' + 'SNR_' + str(SNR) + '_'
+tag = 'N_'+str(int(my_Ntot*1e-3)) + 'k_' + 'SNR_' + str(SNR) + '_fitted_'
 for i,kT in enumerate(kT_list):
-    
+    lT = np.sqrt(h**2/(2*pi*m6Li*kT))
     mu = find_mu(y_sample,kT,my_Ntot,wr,wy)
     
     _, _, sm0, _,_ = harmonic_trap_nOD(y_sample,kT,mu,wr,wy,noise=0)
     nOD, T_sm, sm, Ntot,ttf = harmonic_trap_nOD(y_sample,kT,mu,wr,wy,noise=SNR)
     EE0,Ef = analysis.calc_EoverE0(wx,wy,wz,U0,sm,Ntot)
     
-    df.loc[i] = [kT/kb*1e9,sm,sm0,mu,np.array(nOD,dtype='float'),Ntot,EE0,Ef,ttf]
+    p0 = (0.9*max(nOD), 50.e-6, 0., 1.)
+    pars,_,_ = analysis.fit1D(y_sample,nOD, analysis.degfermi1D_xfix,p0,(0.,0.))
+    pars = tuple(pars)+(0,0)
+    nOD_fit_ni = analysis.degfermi1D_xfix(pars)(y_sample)
+    sm_fit_ni = 2*secMom(y_sample/px,nOD_fit_ni)
     
+    f_opt = lambda y,kT,q0: n1d(y,wr,wy,lT,kT,q0)*sigma0
+    p0 = (0.8*kT,1)
+    pars,_ = opt.curve_fit(f_opt,y_sample,nOD,p0=p0)
+    
+    nOD_fit_unit = f_opt(y_sample,*pars)
+    sm_fit_unit = 2*secMom(y_sample/px,nOD_fit_unit)
+    df.loc[i] = [kT/kb*1e9,sm,sm0,sm_fit_unit,sm_fit_ni,mu,np.array(nOD,dtype='float'),nOD_fit_unit,Ntot,EE0,Ef,ttf]
+
+#############################
+##      Plot SMs
+#############################
+f_sm,a_sm = subplots(1,figsize=(2,2))
+a_sm.plot(x,df.sm)
+a_sm.plot(x,df.sm0)
+a_sm.plot(x,df.sm_fit_unit)
+a_sm.plot(x,df.sm_fit_ni)
+a_sm.set_xlabel('temperature (nK)')
+a_sm.set_ylabel('temperature (nK)')
+f_sm.tight_layout()
+f_sm.savefig(tag+'sm_coll.pdf',dpi=300)
 
 nOD_list = np.array([row for row in df.nOD.values])
+nOD_fit_list = np.array([row for row in df.nOD_fit.values])
 my_nOD = nOD_list[-1]
 la = [5,15,25,35]
 X,Y = np.meshgrid(y_sample*1e6,kT_list/kb*1e9)

@@ -4,7 +4,6 @@ from pylab import *
 from qo.theory import dipolepotentials
 from qo.constants import *
 from qo.evaltools import analysis
-from qo.theory import gsl
 import pandas as pd
 import PCA
 
@@ -55,15 +54,20 @@ def find_mu(y,kT,Ntot,wr,wy):
     f_opt = lambda mu: np.abs(get_N(mu*1e-9*kb,y_sample,kT,wr,wy) - Ntot)
     popt = opt.minimize_scalar(f_opt)
     mu = popt.x*1e-9*kb
+##     print popt.fun
     return mu
     
     
 close('all')
 my_dict = dict(left=0.15,right=0.8)
+## fig,[axL,ax] = subplots(2,1,sharex=True,figsize=(3,5),gridspec_kw=my_dict)
 fig = figure(figsize=(3,3))
 axL = fig.add_axes([0.15, 0.73, 0.6, 0.23])
 ax = fig.add_axes([0.15, 0.15, 0.6, 0.5],sharex=axL)
 figT,axT = subplots(1,1,sharex=True,figsize=(3,3))
+## gs = gridspec.GridSpec(2, 2,
+##                        width_ratios=[1, 2],
+##                        height_ratios=[4, 1]
 
 nuFortPower = 0.8 ##Druing imaging
 nuFort=dipolepotentials.Dipoletrap(waistx=64.7e-6,waisty=80.e-6,wavelength=1064e-9,power=nuFortPower)	
@@ -76,13 +80,13 @@ wxyz = np.array([wx,wy,wz])
 U0 = -nuFort.potential(dipolepotentials.Li6)
 sigma0 = 0.5*3*0.67e-6**2/2/pi
 
-SNR = 0.
+SNR = 0.2
 
 df = pd.DataFrame(columns=['Temp','sm','sm0','mu','nOD','Ntot','EE0','EF','ttf'])
 
 kT_list = np.arange(50,500,10)*1e-9*kb
 my_Ntot = 1e5
-tag = 'N_'+str(int(my_Ntot*1e-3)) + 'k_' + 'SNR_' + str(SNR) + '_'
+tag = 'exp_N_'+str(int(my_Ntot*1e-3)) + 'k_' + 'SNR_' + str(SNR) + '_'
 for i,kT in enumerate(kT_list):
     
     mu = find_mu(y_sample,kT,my_Ntot,wr,wy)
@@ -96,14 +100,13 @@ for i,kT in enumerate(kT_list):
 
 nOD_list = np.array([row for row in df.nOD.values])
 my_nOD = nOD_list[-1]
-la = [5,15,25,35]
+la = 15
 X,Y = np.meshgrid(y_sample*1e6,kT_list/kb*1e9)
 im = ax.pcolormesh(X,Y,nOD_list/sigma0*1e-6,cmap=cm.gray)
-for l in la:
-    ax.plot(y_sample*1e6,np.ones(len(y_sample))*kT_list[l]/kb*1e9,'r-')
-axL.plot(y_sample*1e6,nOD_list[la].T/sigma0*1e-6,'k-')
+ax.plot(y_sample*1e6,np.ones(len(y_sample))*kT_list[la]/kb*1e9,'r-')
+axL.plot(y_sample*1e6,nOD_list[la]/sigma0*1e-6,'k-')
 axL.set_ylabel(r'$n_{\mathrm{1D}} (\mathrm{atoms}/\mu\mathrm{m})$')
-axL.set_ylim([-20,600])
+axL.set_ylim([-20,500])
 ax.set_xlabel(r'$y$ ($\mu$m)')
 ax.set_ylabel(r'$T$ (nK)')
 axL.set_xlim([0,400])

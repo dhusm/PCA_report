@@ -4,7 +4,6 @@ from pylab import *
 from qo.theory import dipolepotentials
 from qo.constants import *
 from qo.evaltools import analysis
-from qo.theory import gsl
 import pandas as pd
 import PCA
 
@@ -20,9 +19,8 @@ cwd = os.getcwd()
 home = os.path.expanduser("~")
 style.use('C:\\Users\\d_hus\\.matplotlib\\stylelib\\fountain.mplstyle')
 
-
 px = 6.45e-6 / 1.56
-height = 200
+height = 150
 y_sample = np.arange(0,height/2*px,px)
 
 def n1d(y,wr,wy,lT,kT,q0):
@@ -39,9 +37,9 @@ def harmonic_trap_nOD(y,kT,mu,wr,wy,noise=0):
     noise_eff = np.amax(n)*noise
     y_noise = (np.random.rand(len(y))-0.5)*noise_eff
     n += y_noise
-    Ntot = np.sum(n)*px*2 #factor 2 since only half the reservoir sampled
+    Ntot = np.sum(n)*px*2
     nOD = n* sigma0 ## from atom density to optical density
-    sm = 2*secMom(y_sample/px,nOD) # in px**2, factor 2 since only half the reservoir sampled
+    sm = secMom(y_sample/px,nOD)*2 ## in px**2
     T_sm,ttf = utility.get_T_Unitary(wx,wy,wz,U0,sm,Ntot)
     return nOD, T_sm, sm, Ntot,ttf
     
@@ -55,6 +53,7 @@ def find_mu(y,kT,Ntot,wr,wy):
     f_opt = lambda mu: np.abs(get_N(mu*1e-9*kb,y_sample,kT,wr,wy) - Ntot)
     popt = opt.minimize_scalar(f_opt)
     mu = popt.x*1e-9*kb
+##     print popt.fun
     return mu
     
     
@@ -65,7 +64,7 @@ axL = fig.add_axes([0.15, 0.73, 0.6, 0.23])
 ax = fig.add_axes([0.15, 0.15, 0.6, 0.5],sharex=axL)
 figT,axT = subplots(1,1,sharex=True,figsize=(3,3))
 
-nuFortPower = 0.8 ##Druing imaging
+nuFortPower = 0.8 ##During imaging
 nuFort=dipolepotentials.Dipoletrap(waistx=64.7e-6,waisty=80.e-6,wavelength=1064e-9,power=nuFortPower)	
 trapFreqs=nuFort.trap_frequencies(dipolepotentials.Li6)
 wx = trapFreqs[0]*2*pi
@@ -76,17 +75,16 @@ wxyz = np.array([wx,wy,wz])
 U0 = -nuFort.potential(dipolepotentials.Li6)
 sigma0 = 0.5*3*0.67e-6**2/2/pi
 
-SNR = 0.
+SNR = 0.1
 
 df = pd.DataFrame(columns=['Temp','sm','sm0','mu','nOD','Ntot','EE0','EF','ttf'])
 
-kT_list = np.arange(50,500,10)*1e-9*kb
-my_Ntot = 1e5
-tag = 'N_'+str(int(my_Ntot*1e-3)) + 'k_' + 'SNR_' + str(SNR) + '_'
-for i,kT in enumerate(kT_list):
+kT = 100e-9*kb
+Ntot_list = np.arange(10e3,200e3,5e3)
+tag = 'T_'+str(int(kT/kb*1e9)) + 'k_' + 'SNR_' + str(SNR) + '_'
+for i,Ntot in enumerate(Ntot_list):
     
-    mu = find_mu(y_sample,kT,my_Ntot,wr,wy)
-    
+    mu = find_mu(y_sample,kT,Ntot,wr,wy)
     _, _, sm0, _,_ = harmonic_trap_nOD(y_sample,kT,mu,wr,wy,noise=0)
     nOD, T_sm, sm, Ntot,ttf = harmonic_trap_nOD(y_sample,kT,mu,wr,wy,noise=SNR)
     EE0,Ef = analysis.calc_EoverE0(wx,wy,wz,U0,sm,Ntot)
@@ -97,16 +95,16 @@ for i,kT in enumerate(kT_list):
 nOD_list = np.array([row for row in df.nOD.values])
 my_nOD = nOD_list[-1]
 la = [5,15,25,35]
-X,Y = np.meshgrid(y_sample*1e6,kT_list/kb*1e9)
+X,Y = np.meshgrid(y_sample*1e6,Ntot_list*1e-3)
 im = ax.pcolormesh(X,Y,nOD_list/sigma0*1e-6,cmap=cm.gray)
 for l in la:
-    ax.plot(y_sample*1e6,np.ones(len(y_sample))*kT_list[l]/kb*1e9,'r-')
+    ax.plot(y_sample*1e6,np.ones(len(y_sample))*Ntot_list[l]*1e-3,'r-')
 axL.plot(y_sample*1e6,nOD_list[la].T/sigma0*1e-6,'k-')
 axL.set_ylabel(r'$n_{\mathrm{1D}} (\mathrm{atoms}/\mu\mathrm{m})$')
-axL.set_ylim([-20,600])
+## axL.set_ylim([-20,500])
 ax.set_xlabel(r'$y$ ($\mu$m)')
-ax.set_ylabel(r'$T$ (nK)')
-axL.set_xlim([0,400])
+ax.set_ylabel(r'$N$ ($10^3$)')
+axL.set_xlim([0,300])
 ## axL.set_xticklabels([])
 ## fig.tight_layout()
 ## im_aa2.set_clim([-0.4,0.4])
@@ -150,7 +148,7 @@ colorbar(im_aa2,ax=aa2)
 f2.tight_layout()
 f2.savefig(tag+'Eigenvectors.png',dpi=300)
 
-sm_rec = np.zeros([len(kT_list),len(my_pca.val)])
+sm_rec = np.zeros([len(Ntot_list),len(my_pca.val)])
 ## Reconstruct clouds from various numbers of PCA
 for n,nOD in enumerate(nOD_list):
     for i in range(len(my_pca.val)):
@@ -159,8 +157,8 @@ for n,nOD in enumerate(nOD_list):
         sm_rec[n,i] = sm
 sm_dif = sm_rec.T / df.sm.values - 1
 m = 50
-axT.plot(sm_dif[:m,::10]*100,'-o')
-labs = [str(int(it/kb*1e9))+' nK' for it in kT_list[::10]]
+axT.plot(sm_dif[:m,::10]*100,'-o',ms=3)
+labs = [str(int(it*1e-3)) for it in Ntot_list[::10]]
 ## im = axT.imshow(sm_dif[:10].T,aspect='auto',cmap=cm.RdBu)
 ## im.set_clim([-0.1,0.1])
 ## colorbar(im,ax=axT)

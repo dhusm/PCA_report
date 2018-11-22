@@ -27,7 +27,7 @@ style.use(home + '\\.matplotlib\\stylelib\\fountain.mplstyle')
 
 px = 6.45e-6 / 1.56
 height = 200
-y_sample = np.arange(-height/2*px,height/2*px,px)
+y_sample = np.arange(0,height/2*px,px)
 
 def n1d(y,wr,wy,lT,kT,q0):
     n = (2.*pi/(m6Li*wr**2))*(kT/lT**3) * utility.get_fp(q0-0.5/kT*m6Li*(wy*y)**2)

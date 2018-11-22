@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6700) (preloaded format=pdflatex 2018.6.20)  24 OCT 2018 15:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6700) (preloaded format=pdflatex 2018.6.20)  22 NOV 2018 14:49
 entering extended mode
 **./PCA_report.tex
 (PCA_report.tex
@@ -1330,90 +1330,181 @@ OML/lmm/m/it/10.95 x\OMS/lmsy/m/n/10.95  $ \T1/lmr/m/n/10.95 and $\OML/lmm/m/it
  []
 
 [2]
-<../constructClouds/N_100k_SNR_0.0_1D_density.png, id=56, 216.81pt x 216.81pt>
+<../constructClouds/N_100k_SNR_0.0_1D_density.png, id=49, 216.81pt x 216.81pt>
 File: ../constructClouds/N_100k_SNR_0.0_1D_density.png Graphic file (type png)
 <use ../constructClouds/N_100k_SNR_0.0_1D_density.png>
 Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_1D_density.png  used
- on input line 116.
+ on input line 104.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
-
-Overfull \hbox (8.5687pt too wide) in paragraph at lines 116--116
- [][] 
- []
-
 File: ../constructClouds/N_100k_SNR_0.0_1D_density.png Graphic file (type png)
 <use ../constructClouds/N_100k_SNR_0.0_1D_density.png>
 Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_1D_density.png  used
- on input line 116.
+ on input line 104.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+File: ../constructClouds/N_100k_SNR_0.0_1D_density.png Graphic file (type png)
+<use ../constructClouds/N_100k_SNR_0.0_1D_density.png>
+Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_1D_density.png  used
+ on input line 104.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+<../constructClouds/N_100k_SNR_0.0_deviation.pdf, id=57, 216.81pt x 216.81pt>
+File: ../constructClouds/N_100k_SNR_0.0_deviation.pdf Graphic file (type pdf)
+<use ../constructClouds/N_100k_SNR_0.0_deviation.pdf>
+Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_deviation.pdf  used 
+on input line 107.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+File: ../constructClouds/N_100k_SNR_0.0_deviation.pdf Graphic file (type pdf)
+<use ../constructClouds/N_100k_SNR_0.0_deviation.pdf>
+Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_deviation.pdf  used 
+on input line 107.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+File: ../constructClouds/N_100k_SNR_0.0_deviation.pdf Graphic file (type pdf)
+<use ../constructClouds/N_100k_SNR_0.0_deviation.pdf>
+Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_deviation.pdf  used 
+on input line 107.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 
-Overfull \hbox (8.5687pt too wide) in paragraph at lines 116--116
- [][] 
+Overfull \hbox (23.48738pt too wide) detected at line 108
+ [] 
  []
 
-<../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf, id=60, 216.81pt x 216.81
+<../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf, id=64, 216.81pt x 216.81
 pt>
 File: ../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf Graphic file (type p
 df)
 <use ../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf>
 Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf  
-used on input line 123.
+used on input line 114.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 File: ../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf Graphic file (type p
 df)
 <use ../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf>
 Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf  
-used on input line 123.
+used on input line 114.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 File: ../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf Graphic file (type p
 df)
 <use ../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf>
 Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf  
-used on input line 123.
+used on input line 114.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
-<../constructClouds/N_100k_SNR_0.0_Eigenvectors.png, id=61, 216.81pt x 289.08pt
+<../constructClouds/N_100k_SNR_0.0_Eigenvectors.png, id=65, 216.81pt x 289.08pt
 >
 File: ../constructClouds/N_100k_SNR_0.0_Eigenvectors.png Graphic file (type png
 )
 <use ../constructClouds/N_100k_SNR_0.0_Eigenvectors.png>
 Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_Eigenvectors.png  us
-ed on input line 126.
+ed on input line 117.
 (pdftex.def)             Requested size: 216.80946pt x 289.07928pt.
 File: ../constructClouds/N_100k_SNR_0.0_Eigenvectors.png Graphic file (type png
 )
 <use ../constructClouds/N_100k_SNR_0.0_Eigenvectors.png>
 Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_Eigenvectors.png  us
-ed on input line 126.
+ed on input line 117.
 (pdftex.def)             Requested size: 216.80946pt x 289.07928pt.
 File: ../constructClouds/N_100k_SNR_0.0_Eigenvectors.png Graphic file (type png
 )
 <use ../constructClouds/N_100k_SNR_0.0_Eigenvectors.png>
 Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_Eigenvectors.png  us
-ed on input line 126.
+ed on input line 117.
 (pdftex.def)             Requested size: 216.80946pt x 289.07928pt.
 
-Overfull \hbox (23.48738pt too wide) detected at line 127
+Overfull \hbox (23.48738pt too wide) detected at line 118
  [] 
  []
 
-<../constructClouds/N_100k_SNR_0.0_deviation.pdf, id=62, 216.81pt x 216.81pt>
+[3 <../constructClouds/N_100k_SNR_0.0_1D_density.png> <../constructClouds/N_100
+k_SNR_0.0_deviation.pdf>] [4 <../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.
+pdf> <../constructClouds/N_100k_SNR_0.0_Eigenvectors.png>]
+<../constructClouds/T_100k_SNR_0.0_1D_density.png, id=121, 216.81pt x 216.81pt>
+
+File: ../constructClouds/T_100k_SNR_0.0_1D_density.png Graphic file (type png)
+<use ../constructClouds/T_100k_SNR_0.0_1D_density.png>
+Package pdftex.def Info: ../constructClouds/T_100k_SNR_0.0_1D_density.png  used
+ on input line 148.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+File: ../constructClouds/T_100k_SNR_0.0_1D_density.png Graphic file (type png)
+<use ../constructClouds/T_100k_SNR_0.0_1D_density.png>
+Package pdftex.def Info: ../constructClouds/T_100k_SNR_0.0_1D_density.png  used
+ on input line 148.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+File: ../constructClouds/T_100k_SNR_0.0_1D_density.png Graphic file (type png)
+<use ../constructClouds/T_100k_SNR_0.0_1D_density.png>
+Package pdftex.def Info: ../constructClouds/T_100k_SNR_0.0_1D_density.png  used
+ on input line 148.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 File: ../constructClouds/N_100k_SNR_0.0_deviation.pdf Graphic file (type pdf)
 <use ../constructClouds/N_100k_SNR_0.0_deviation.pdf>
 Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_deviation.pdf  used 
-on input line 132.
+on input line 151.
 (pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
-[3 <../constructClouds/N_100k_SNR_0.0_1D_density.png>] [4 <../constructClouds/N
-_100k_SNR_0.0_PC_eigenvalues.pdf> <../constructClouds/N_100k_SNR_0.0_Eigenvecto
-rs.png> <../constructClouds/N_100k_SNR_0.0_deviation.pdf
+File: ../constructClouds/N_100k_SNR_0.0_deviation.pdf Graphic file (type pdf)
+<use ../constructClouds/N_100k_SNR_0.0_deviation.pdf>
+Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_deviation.pdf  used 
+on input line 151.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+File: ../constructClouds/N_100k_SNR_0.0_deviation.pdf Graphic file (type pdf)
+<use ../constructClouds/N_100k_SNR_0.0_deviation.pdf>
+Package pdftex.def Info: ../constructClouds/N_100k_SNR_0.0_deviation.pdf  used 
+on input line 151.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
 
-pdfTeX warning: pdflatex.exe (file ../constructClouds/N_100k_SNR_0.0_deviation.
-pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 145.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 145.
+Overfull \hbox (23.48738pt too wide) detected at line 152
+ [] 
+ []
+
+<../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf, id=134, 216.81pt x 216.8
+1pt>
+File: ../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf Graphic file (type p
+df)
+<use ../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf>
+Package pdftex.def Info: ../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf  
+used on input line 158.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+File: ../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf Graphic file (type p
+df)
+<use ../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf>
+Package pdftex.def Info: ../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf  
+used on input line 158.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+File: ../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf Graphic file (type p
+df)
+<use ../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf>
+Package pdftex.def Info: ../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf  
+used on input line 158.
+(pdftex.def)             Requested size: 216.80946pt x 216.80946pt.
+<../constructClouds/T_100k_SNR_0.0_Eigenvectors.png, id=135, 216.81pt x 289.08p
+t>
+File: ../constructClouds/T_100k_SNR_0.0_Eigenvectors.png Graphic file (type png
+)
+<use ../constructClouds/T_100k_SNR_0.0_Eigenvectors.png>
+Package pdftex.def Info: ../constructClouds/T_100k_SNR_0.0_Eigenvectors.png  us
+ed on input line 161.
+(pdftex.def)             Requested size: 216.80946pt x 289.07928pt.
+File: ../constructClouds/T_100k_SNR_0.0_Eigenvectors.png Graphic file (type png
+)
+<use ../constructClouds/T_100k_SNR_0.0_Eigenvectors.png>
+Package pdftex.def Info: ../constructClouds/T_100k_SNR_0.0_Eigenvectors.png  us
+ed on input line 161.
+(pdftex.def)             Requested size: 216.80946pt x 289.07928pt.
+File: ../constructClouds/T_100k_SNR_0.0_Eigenvectors.png Graphic file (type png
+)
+<use ../constructClouds/T_100k_SNR_0.0_Eigenvectors.png>
+Package pdftex.def Info: ../constructClouds/T_100k_SNR_0.0_Eigenvectors.png  us
+ed on input line 161.
+(pdftex.def)             Requested size: 216.80946pt x 289.07928pt.
+
+Overfull \hbox (23.48738pt too wide) detected at line 162
+ [] 
+ []
+
+[5 <../constructClouds/T_100k_SNR_0.0_1D_density.png>] [6 <../constructClouds/T
+_100k_SNR_0.0_PC_eigenvalues.pdf> <../constructClouds/T_100k_SNR_0.0_Eigenvecto
+rs.png>] [7]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 181.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 181.
  (PCA_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 145.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 181.
 
 
  *File List*
@@ -1539,31 +1630,46 @@ PCA_report.bbl
   ts1lmr.fd    2009/10/30 v1.6 Font defs for Latin Modern
 ../constructClouds/N_100k_SNR_0.0_1D_density.png
 ../constructClouds/N_100k_SNR_0.0_1D_density.png
-../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf
-../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf
-../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf
-../constructClouds/N_100k_SNR_0.0_Eigenvectors.png
-../constructClouds/N_100k_SNR_0.0_Eigenvectors.png
-../constructClouds/N_100k_SNR_0.0_Eigenvectors.png
+../constructClouds/N_100k_SNR_0.0_1D_density.png
 ../constructClouds/N_100k_SNR_0.0_deviation.pdf
+../constructClouds/N_100k_SNR_0.0_deviation.pdf
+../constructClouds/N_100k_SNR_0.0_deviation.pdf
+../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf
+../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf
+../constructClouds/N_100k_SNR_0.0_PC_eigenvalues.pdf
+../constructClouds/N_100k_SNR_0.0_Eigenvectors.png
+../constructClouds/N_100k_SNR_0.0_Eigenvectors.png
+../constructClouds/N_100k_SNR_0.0_Eigenvectors.png
+../constructClouds/T_100k_SNR_0.0_1D_density.png
+../constructClouds/T_100k_SNR_0.0_1D_density.png
+../constructClouds/T_100k_SNR_0.0_1D_density.png
+../constructClouds/N_100k_SNR_0.0_deviation.pdf
+../constructClouds/N_100k_SNR_0.0_deviation.pdf
+../constructClouds/N_100k_SNR_0.0_deviation.pdf
+../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf
+../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf
+../constructClouds/T_100k_SNR_0.0_PC_eigenvalues.pdf
+../constructClouds/T_100k_SNR_0.0_Eigenvectors.png
+../constructClouds/T_100k_SNR_0.0_Eigenvectors.png
+../constructClouds/T_100k_SNR_0.0_Eigenvectors.png
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 145.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 181.
 Package rerunfilecheck Info: File `PCA_report.out' has not changed.
 (rerunfilecheck)             Checksum: AE3F7E00604D95A18BC737B71BCC43F5;112.
 Package logreq Info: Writing requests to 'PCA_report.run.xml'.
 \openout1 = `PCA_report.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 145.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 181.
  ) 
 Here is how much of TeX's memory you used:
- 29214 strings out of 493007
- 549336 string characters out of 3133982
- 1051174 words of memory out of 3000000
- 32724 multiletter control sequences out of 15000+200000
+ 29241 strings out of 493007
+ 550289 string characters out of 3133982
+ 1051830 words of memory out of 3000000
+ 32739 multiletter control sequences out of 15000+200000
  649253 words of font info for 126 fonts, out of 3000000 for 9000
  1127 hyphenation exceptions out of 8191
- 45i,14n,71p,9119b,1666s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 45i,17n,71p,9119b,1669s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program F
 iles (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files (x86)/
 MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Program Files (x86)/MiKTeX 2.9/fon
@@ -1586,9 +1692,9 @@ c/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmri10.p
 fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on PCA_report.pdf (5 pages, 520367 bytes).
+Output written on PCA_report.pdf (8 pages, 589625 bytes).
 PDF statistics:
- 189 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 37 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 246 PDF objects out of 1000 (max. 8388607)
+ 35 named destinations out of 1000 (max. 500000)
+ 52 words of extra memory for PDF output out of 10000 (max. 10000000)
 
